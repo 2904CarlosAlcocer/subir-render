@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta
+      name="description"
+      content="Descubre Rooster Pizza & Grill en La Fortuna: pizzas artesanales, pastas, carnes a la parrilla y pedidos en línea."
+    />
+
+    <meta
+      name="theme-color"
+      content="#120C08"
+    />
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.svg"
+    />
+
+
+    <script>
+      (() => {
+        const ruta =
+          window.location.pathname
+            .replace(/\/+$/, '') || '/'
+
+        const esMovil =
+          window.matchMedia(
+            '(max-width: 767px)'
+          ).matches
+
+        const imagenesPorRuta = {
+          '/': {
+            movil: {
+              href:
+                '/images/home/hero-home-mobile-640.webp',
+              srcset:
+                '/images/home/hero-home-mobile-480.webp 480w, /images/home/hero-home-mobile-640.webp 640w',
+            },
+            escritorio: {
+              href:
+                '/images/home/hero-home-desktop-1440.webp',
+              srcset:
+                '/images/home/hero-home-desktop-960.webp 960w, /images/home/hero-home-desktop-1440.webp 1440w',
+            },
+          },
+          '/menu': {
+            movil: {
+              href:
+                '/images/menu/imgMenu-768.webp',
+              srcset:
+                '/images/menu/imgMenu-768.webp 768w',
+            },
+            escritorio: {
+              href:
+                '/images/menu/imgMenu-1440.webp',
+              srcset:
+                '/images/menu/imgMenu-1440.webp 1440w',
+            },
+          },
+        }
+
+        const configuracion =
+          imagenesPorRuta[ruta]
+
+        if (!configuracion) {
+          return
+        }
+
+        const imagen = esMovil
+          ? configuracion.movil
+          : configuracion.escritorio
+
+        const preload =
+          document.createElement('link')
+
+        preload.rel = 'preload'
+        preload.as = 'image'
+        preload.type = 'image/webp'
+        preload.href = imagen.href
+
+        preload.setAttribute(
+          'imagesrcset',
+          imagen.srcset
+        )
+
+        preload.setAttribute(
+          'imagesizes',
+          '100vw'
+        )
+
+        preload.setAttribute(
+          'fetchpriority',
+          'high'
+        )
+
+        document.head.appendChild(
+          preload
+        )
+      })()
+    </script>
+
+    <title>
+      Rooster Pizza & Grill | La Fortuna
+    </title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script
+      type="module"
+      src="/src/main.jsx"
+    ></script>
+  </body>
+</html>

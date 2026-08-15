@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  --font-mono:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    monospace;
+}
+
+html {
+  background: #120c08;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background: #120c08;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+/*
+|--------------------------------------------------------------------------
+| HOME: RENDERIZADO DIFERIDO DE CONTENIDO FUERA DE PANTALLA
+|--------------------------------------------------------------------------
+|
+| Las secciones continúan presentes en el HTML, pero el navegador puede
+| posponer su composición y pintura hasta que estén cerca del viewport.
+|
+*/
+
+.home-deferred-section {
+  content-visibility: auto;
+}
+
+.home-deferred-specialties {
+  contain-intrinsic-size: auto 1250px;
+}
+
+.home-deferred-menu {
+  contain-intrinsic-size: auto 1150px;
+}
+
+.home-deferred-cta {
+  contain-intrinsic-size: auto 420px;
+}
+
+.home-deferred-footer {
+  contain-intrinsic-size: auto 130px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| ANIMACIONES DECORATIVAS DEL HOME
+|--------------------------------------------------------------------------
+*/
+
+@keyframes spark {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg) translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+    transform: scale(1.5) rotate(45deg) translateY(-10px);
+  }
+
+  70% {
+    opacity: 0.8;
+    transform: scale(1) rotate(90deg) translateY(-20px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(180deg) translateY(-40px);
+  }
+}
+
+@keyframes float-spark {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translate(10px, -15px) scale(1.2);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: translate(-8px, -35px) scale(1);
+  }
+
+  80% {
+    opacity: 0.6;
+    transform: translate(15px, -50px) scale(0.8);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-5px, -70px) scale(0);
+  }
+}
+
+.animate-spark {
+  animation: spark linear infinite;
+}
+
+.animate-float-spark {
+  animation: float-spark ease-in-out infinite;
+}
+
+/*
+|--------------------------------------------------------------------------
+| AJUSTES EXCLUSIVOS PARA MÓVIL
+|--------------------------------------------------------------------------
+|
+| En móvil la tarjeta destacada queda debajo del contenido inicial del hero.
+| También se limita la cantidad de partículas pintadas simultáneamente.
+|
+*/
+
+@media (max-width: 767px) {
+  .home-producto-destacado {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+  }
+
+  .home-page .animate-spark:nth-child(n + 9) {
+    display: none;
+  }
+
+  .home-page .animate-float-spark:nth-child(n + 5) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-spark,
+  .animate-float-spark {
+    animation: none !important;
+    opacity: 0.35;
+  }
+}

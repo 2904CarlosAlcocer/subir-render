@@ -1,0 +1,25 @@
+# Laravel
+backend/vendor/
+backend/.env
+backend/storage/logs/*
+backend/bootstrap/cache/*
+backend/public/storage/comprobantes/*
+
+# React
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+# Android / Capacitor
+frontend/android/.gradle/
+frontend/android/.idea/
+frontend/android/.kotlin/
+frontend/android/local.properties
+frontend/android/**/build/
+frontend/android/captures/
